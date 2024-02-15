@@ -1,0 +1,9 @@
+La cave doit avoir 2bytes de plus que le shellcode et un de plus à la fin pour le null byte :
+
+2bytes (pushad, pushfd)-> Shellcode -> Nullbyte (Si non présent dans le shellcode) -> 2bytes (popad & popfd) -> 1bytes (instruction entrypoint) -> 1byte (Jump après l'entrypoint)
+
+En résumé notre cave doit faire : 
+
+    taille du shellcode + 7 (ou 6 si le nullbyte n'est pas dans le shellcode)
+
+// Il faut faire gaffe à ce que le shellcode n'exit pas le programme (si c'est le cas il faudras le patch manuellement)
